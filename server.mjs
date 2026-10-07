@@ -1,4 +1,7 @@
-// qwen-image-mcp — 本地 Qwen-Image 2.1 文生图 MCP server (zero dependency, node: builtins only)
+// SPDX-License-Identifier: MIT
+// Local Image MCP — local ComfyUI image-generation bridge (Node builtins only)
+// Adapted transport framing and workflow references: see NOTICE.md and
+// third_party_licenses/ for retained upstream copyright and permission notices.
 //
 // Transport : MCP over stdio. Framing is auto-detected like the in-box
 //             dsh-computer-use-win server: newline-delimited JSON by default,
@@ -19,8 +22,8 @@ import { fileURLToPath } from "node:url";
 // identity / paths
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SERVER_VERSION = "1.1.1";
-const SERVER_NAME = "qwen-image-mcp";
+const SERVER_VERSION = "1.1.2";
+const SERVER_NAME = "local-image-mcp";
 const MIN_NODE_MAJOR = 22;
 
 const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
@@ -997,7 +1000,7 @@ async function callGetResult(args) {
 async function callStatus() {
   const config = requireConfig();
   let diagnosisFailed = false;
-  const lines = [`server=qwen-image-mcp ${SERVER_VERSION}`, `comfy_url=${COMFY_BASE}`];
+  const lines = [`server=${SERVER_NAME} ${SERVER_VERSION}`, `comfy_url=${COMFY_BASE}`];
   const stats = await probeComfy(4000);
   if (!stats) {
     lines.push("comfyui=未运行（本工具不会自动拉起，避免体检时占用显存）");

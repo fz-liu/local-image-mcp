@@ -1,4 +1,4 @@
-// mcp-client-test.mjs — real stdio client for qwen-image-mcp/server.mjs
+// mcp-client-test.mjs — real stdio client for Local Image MCP
 //
 // Speaks the same framing the server accepts (newline-delimited JSON, plus one
 // Content-Length framed round trip to prove the auto-detection works), then
@@ -112,7 +112,7 @@ try {
   const init = await send("initialize", { protocolVersion: "2025-06-18", capabilities: {}, clientInfo: { name: "mcp-client-test", version: "1.0.0" } });
   check("initialize returns a result", Boolean(init && init.result), JSON.stringify(init).slice(0, 200));
   check("initialize echoes protocolVersion", Boolean(init.result && init.result.protocolVersion === "2025-06-18"), JSON.stringify(init.result && init.result.protocolVersion));
-  check("serverInfo.name is qwen-image-mcp", Boolean(init.result && init.result.serverInfo && init.result.serverInfo.name === "qwen-image-mcp"), JSON.stringify(init.result && init.result.serverInfo));
+  check("serverInfo.name is local-image-mcp", Boolean(init.result && init.result.serverInfo && init.result.serverInfo.name === "local-image-mcp"), JSON.stringify(init.result && init.result.serverInfo));
   check("serverInfo.version present", Boolean(init.result && init.result.serverInfo && /^\d+\.\d+\.\d+$/.test(init.result.serverInfo.version)), JSON.stringify(init.result && init.result.serverInfo));
 
   // 2) initialized notification (no reply expected)
@@ -136,7 +136,7 @@ try {
   const status = await send("tools/call", { name: "status", arguments: {} }, { timeoutMs: 120000 });
   const statusText = toolText(status && status.result);
   check("status returns text content", statusText.length > 0, JSON.stringify(status).slice(0, 200));
-  check("status reports the server version", statusText.includes("server=qwen-image-mcp"), statusText.split("\n")[0]);
+  check("status reports the server version", statusText.includes("server=local-image-mcp"), statusText.split("\n")[0]);
   check("status reports ComfyUI state", /comfyui=/.test(statusText), statusText.slice(0, 300));
   check("status is not an error", Boolean(status && status.result && status.result.isError !== true), statusText.slice(0, 200));
   console.log("  info status output:");

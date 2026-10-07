@@ -1,7 +1,14 @@
-# 本地 Qwen-Image 生图 MCP（DSH 鲸鱼娘版）
+# Local Image MCP
 
-2026-10-07 复核修订，服务版本 **1.1.1**。本机项目位置：
-`E:\aiworkplace\codexworkplace\dsh\qwen-image-mcp`。
+独立社区维护的本机 ComfyUI MCP 桥接工具，服务版本 **1.1.2**。当前测试模型为 Qwen-Image 2.1，可通过标准 stdio MCP 宿主调用；附带一个社区 DSH profile 的注册示例。
+
+**AI 辅助编写说明：代码主要由 AI 辅助生成、修改、检查并进行自动化测试。** 本项目不是 Qwen、ComfyUI 或 DeepSeek 官方产品，没有获得其赞助或背书。
+
+## 许可和使用范围
+
+桥接代码按 [MIT](LICENSE) 提供，参考/改编来源及第三方许可见 [NOTICE](NOTICE.md)。本仓库不分发模型、第三方程序、logo 或角色素材。
+
+**Qwen-Image 2.1 模型使用研究许可，非商用限定为研究或评估，商业使用需另行授权。** 本项目的 MIT 许可不会授予模型商业使用权。请先阅读 [官方模型许可](https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE)和[公开发布自查](LEGAL.md)。本项目没有给所有生成内容作合法性或权属保证。
 
 本机配置为 RTX 4060 Laptop 8GB、Qwen-Image 2.1 Q4_K 主体、W4A8 编码器、专用 BF16 VAE。服务使用 Node 内置模块，通过 stdio MCP 调用本机 ComfyUI。模型、ComfyUI 主程序和既有 DSH 插件文件保持原配置。
 
@@ -97,7 +104,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File 'E:\aiworkplace\codexworkpla
 
 4. 双击桌面“DSH 鲸鱼娘”，让模型先调用 `mcp__qwenimg__status`，再生成一张 512×512 图片。超时后的同一任务应调用 `get_result`。
 
-唯一注册目标是 `C:\Users\Administrator\.dsh-pack-better\profiles\desktop\cordis.patch.yml`。不会更改官方 `.dsh` profile、DSH 启动器或既有 wincu 条目。
+注册目标是当前用户的 `%USERPROFILE%\.dsh-pack-better\profiles\desktop\cordis.patch.yml`。该 profile 名称与工具命名仅用于兼容性配置；本项目不分发宿主程序或社区桌面素材。
 注册块使用 `command: !!js process.execPath`、`transport: stdio`、服务名 `qwenimg`、调用超时 **900000 毫秒**。等待预算覆盖最多 180 秒启动、600 秒取图等待和 HTTP 操作。当前宿主的内置 Node 为 24.18.1，已单独验证。
 
 脚本保留块外字节、BOM、混合换行和原有块位置，拒绝重复/残缺标记及手写 ID 冲突；写前备份一份，使用同目录临时文件原子替换并自校验。原文件不以换行结尾时，新块放到文件开头，以便移除后精确恢复原字节。

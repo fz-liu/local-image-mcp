@@ -43,7 +43,7 @@ const tool = async (name,args={}) => {
 const text = (result) => result.content[0].text;
 const start = Date.now();
 try {
-  const initialization = await rpc("initialize",{protocolVersion:"2025-06-18",capabilities:{},clientInfo:{name:"qwenimg-live-test",version:"1.1.1"}});
+  const initialization = await rpc("initialize",{protocolVersion:"2025-06-18",capabilities:{},clientInfo:{name:"local-image-live-test",version:"1.1.2"}});
   child.stdin.write(JSON.stringify({jsonrpc:"2.0",method:"notifications/initialized"})+"\n");
   let result = await tool("generate",{
     prompt:"一只橘猫坐在木桌上，柔和的窗边阳光，写实摄影，背景简洁。",

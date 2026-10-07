@@ -2,6 +2,14 @@
 
 核对日期：2026-10-07，Asia/Shanghai。服务由 1.0.0 修订为 **1.1.0**。
 
+## 公开发布自查：1.1.2
+
+项目公开名称与 package/server identity 改为 Local Image MCP，减少以模型品牌作为主要名称的风险；本机旧目录、管理块标记和 `qwenimg` 工具 namespace 保留以兼容已有配置。
+
+补充 LICENSE、NOTICE、第三方 MIT 许可原文与 LEGAL，明确 AI 辅助编写、第三方来源、独立社区身份及模型许可边界。模型研究许可与桥接代码 MIT 授权分别适用，不以大学生、低关注或非营利身份作免责承诺。
+
+公开材料不包含模型、第三方程序、logo、社区角色素材、本机凭据或运行日志。当前文档删去不必要的测试任务 ID 与 profile 哈希；历史开发记录仍保留，不能声称已从历史抹去。详细范围与残余不确定性见 [公开发布自查](LEGAL.md)。
+
 ## GitHub 上传前复核：1.1.1
 
 - 新增配置与注册模板、Git 忽略规则和运行命令。上传源代码、模板、说明与测试；本机 config.json、snippet、logs、state、备份、模型与图片均不纳入版本管理。
@@ -56,17 +64,13 @@
 - `check.ps1 -Live -Record` 成功保存 `state/last-check.json`；环境核对无 FAIL。未应用注册块仍是预期 WARN。
 - **真实 MCP 出图**：512×512、20 步、CFG 1、seed 42。先 generate(wait_seconds=1)，再 get_result(return_image=true)，成功返回真实 PNG 与相同的图片内容，随后 status 和 free_vram 成功。整轮约 **43 秒**，包含服务冷启动和检查，不是纯生成时间。
 
-实测任务：`bfd4e6ea-4cfa-4ef1-8528-37514441f169`。
+实测任务的详细 ID 保存在本机 state/review-live-test.json，不作为公开排错所必需的内容。
 
 输出：`E:\ComfyUI\ComfyUI_windows_portable\ComfyUI\output\DSH_Qwen21_review_k3ofmuxtzqnb_00001_.png`。
 
 机器记录：`state/review-live-test.json`。
 
-安装测试全部针对新建临时文件，真实 `cordis.patch.yml` 的 SHA256 保持为：
-
-```text
-CCFF5118D11547EDA75453242221C293A6FADB4FFB4C338B881B88F76EEAFA7C
-```
+安装测试全部针对新建临时文件；真实 profile 的哈希保持不变，具体校验值保存在本机核对记录中。
 
 原代码备份：`E:\aiworkplace\codexworkplace\codex1\.review\qwen-image-mcp-before-review.zip`。
 
