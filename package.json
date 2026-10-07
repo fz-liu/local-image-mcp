@@ -1,0 +1,15 @@
+{
+  "name": "qwen-image-mcp",
+  "version": "1.1.1",
+  "private": true,
+  "description": "Local Qwen-Image 2.1 MCP server for ComfyUI and DSH on Windows",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test scripts/regression-test.mjs",
+    "test:self": "node server.mjs --self-test",
+    "test:mcp": "node scripts/mcp-client-test.mjs",
+    "test:live": "node scripts/live-test.mjs --generate"
+  }
+}

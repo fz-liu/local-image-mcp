@@ -1,0 +1,33 @@
+# Local settings and generated registration block
+config.json
+cordis.patch.snippet.yml
+
+# Runtime data, backups and credentials
+logs/
+state/
+.env
+.env.*
+!.env.example
+*.bak
+*.log
+*.zip
+*.7z
+*.pem
+*.key
+*credentials*
+
+# Models and generated media
+models/
+output/
+*.gguf
+*.safetensors
+*.png
+
+# Editor/build files
+node_modules/
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+Thumbs.db
+.DS_Store

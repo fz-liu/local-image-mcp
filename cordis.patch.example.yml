@@ -1,0 +1,13 @@
+# >>> qwen-image-mcp (managed block; do not edit inside) >>>
+- insert:
+    - id: mcp-qwen-image
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: qwenimg
+        transport: stdio
+        command: !!js process.execPath
+        args:
+          - '__QWENIMG_SERVER_PATH__'
+        toolCallTimeoutMs: 900000
+        failOnStartupError: false
+# <<< qwen-image-mcp <<<

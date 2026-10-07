@@ -1,0 +1,40 @@
+{
+  "$comment": "qwen-image-mcp configuration. This is the only place you edit paths / model names. Every field can be overridden by an environment variable QWENIMG_<FIELD> (uppercase); nested objects also accept QWENIMG_<OBJECT>_<KEY>, e.g. QWENIMG_MODELS_UNET. The DSH cordis patch deliberately passes no env, so in normal use what you see here is what runs.",
+  "comfy_url": "http://127.0.0.1:8188",
+  "comfy_root": "E:\\ComfyUI\\ComfyUI_windows_portable",
+  "comfy_output_dir": "E:\\ComfyUI\\ComfyUI_windows_portable\\ComfyUI\\output",
+  "comfy_python": "E:\\ComfyUI\\ComfyUI_windows_portable\\python_embeded\\python.exe",
+  "comfy_main": "E:\\ComfyUI\\ComfyUI_windows_portable\\ComfyUI\\main.py",
+  "comfy_pre_args": [
+    "-s"
+  ],
+  "comfy_args": [
+    "--windows-standalone-build",
+    "--reserve-vram",
+    "1",
+    "--disable-auto-launch"
+  ],
+  "autostart": true,
+  "autostart_timeout_s": 180,
+  "models": {
+    "unet": "qwen_image_2.1-Q4_K.gguf",
+    "clip": "qwen3vl_8b_w4a8.safetensors",
+    "vae": "qwen_image_2.1_vae_bf16.safetensors"
+  },
+  "limits": {
+    "min_side": 256,
+    "max_side": 1024,
+    "max_pixels": 1048576,
+    "max_steps": 40,
+    "max_prompt_chars": 4000,
+    "default_wait_s": 180,
+    "max_wait_s": 600
+  },
+  "defaults": {
+    "width": 512,
+    "height": 512,
+    "steps": 20,
+    "cfg": 1,
+    "filename_prefix": "DSH_Qwen21"
+  }
+}
